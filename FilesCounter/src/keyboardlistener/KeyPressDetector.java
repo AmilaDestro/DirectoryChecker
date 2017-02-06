@@ -15,7 +15,6 @@ public class KeyPressDetector implements Runnable, NativeKeyListener {
 
     @Override
     public void run() {
-        System.out.println("Press <Esc> if you want to interrupt the process.");
         GlobalScreen.getInstance().addNativeKeyListener(this);
 
         try {
@@ -39,9 +38,9 @@ public class KeyPressDetector implements Runnable, NativeKeyListener {
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
-        if (nativeKeyEvent.getKeyCode() == NativeKeyEvent.VK_ESCAPE){
-            GlobalScreen.unregisterNativeHook();
-        }
+//        if (nativeKeyEvent.getKeyCode() == NativeKeyEvent.VK_ESCAPE){
+//            GlobalScreen.unregisterNativeHook();
+//        }
     }
 
     @Override

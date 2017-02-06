@@ -16,8 +16,13 @@ public class IncomingData {
 
 
     private void inputFiles(){
-        System.out.println("Enter two values.");
-        System.out.println("1st - source file name, 2nd - output file name.");
+        System.out.println("To start files count complete the following steps:");
+        System.out.println("1. Insert value of full path to txt-file that contains different paths to data storage." + "\n" +
+                "Count of files number will be performed for each path separately.");
+        System.out.println("2. Insert value of full path to csv-file that includes counted results for each path.");
+        System.out.println("Both values must be inserted into one row by dividing them by space as it is shown in example:" + "\n" +
+        "paths.txt result.csv");
+        System.out.println();
         Scanner input = new Scanner(System.in);
         this.sourceFileName = input.next();
         this.destinationFileName = input.next();

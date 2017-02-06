@@ -2,7 +2,6 @@ package filesforanalysis;
 
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +30,7 @@ public class FilesCounter {
     public final void readSourceFile(){
         try(BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
-                        new FileInputStream(data.getSourceFileName()), StandardCharsets.UTF_8))){
+                        new FileInputStream(data.getSourceFileName())))){
             String line;
             while ((line = reader.readLine()) != null){
                 paths.add(line);
@@ -44,6 +43,9 @@ public class FilesCounter {
 
     //each path included to the input file gets passed to the countFile method
     public final void processPaths(){
+        System.out.println("Files count started. Wait until it's finished.");
+        System.out.println("Press <Esc> if you want to interrupt the process.");
+
         for (String path: counter.paths){
             numberOfFiles = 0;
             countFiles(path);
@@ -56,12 +58,10 @@ public class FilesCounter {
     private Integer countFiles(String filePath){
         File file = new File(filePath);
         File[] listFiles = file.listFiles();
-        System.out.println("Counting files...");
 
         try{
             for (File currentFile: listFiles){
               if (isEscPressed()){
-                System.out.println("You have interrupted files counting.");
                 break;
               }
               if (currentFile.isFile()){
@@ -71,7 +71,7 @@ public class FilesCounter {
                 countFiles(currentFile.getPath());
               }
                try {
-                 Thread.sleep(100);
+                 Thread.sleep(20);
                }catch (InterruptedException e){
                   System.out.println(e.toString());
               }
