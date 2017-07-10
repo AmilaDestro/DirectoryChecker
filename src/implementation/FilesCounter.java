@@ -14,7 +14,6 @@ public abstract class FilesCounter {
     protected static volatile boolean escStatus;
 
 
-
     public FilesCounter(String sourceFile, String resultsFile) {
         this.sourceFile = sourceFile;
         this.resultsFile = resultsFile;
