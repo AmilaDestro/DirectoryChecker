@@ -30,8 +30,7 @@ public class InitializedFilesCounter extends DataProcessor {
           while (fileReader.ready()) {
               ++recordsQuantity;
               String path = fileReader.readLine();
-//              new CounterThread(path);
-              new Thread(new CounterThread2(this, path)).start();
+              new CounterThread(path);
           }
        } catch (IOException e) {
            System.out.println(e.getMessage());
@@ -105,7 +104,7 @@ public class InitializedFilesCounter extends DataProcessor {
             }
             displayResults(numberOfFiles, filePath);
             writeData();
-            if (recordsQuantity == recordIndex & !getEscStatus()) {
+            if (getRecordsQuantity() == getRecordIndex() & !getEscStatus()) {
                 System.out.println("Counting files finished. Press <Esc> to shutdown the application.");
             }
         }
@@ -114,7 +113,6 @@ public class InitializedFilesCounter extends DataProcessor {
         @Override
         public void countFiles(String filePath) throws InterruptedException {
             File file = new File(filePath);
-            // if !file.isDirectory
             File[] listFiles = file.listFiles();
             if (listFiles != null) {
                 for (File currentFile: listFiles){
@@ -128,7 +126,7 @@ public class InitializedFilesCounter extends DataProcessor {
                         countFiles(currentFile.getPath());
 
                     }
-                    countedFiles.put(this.filePath, numberOfFiles);
+                    updateCountedFiles(this.filePath, numberOfFiles);
                     sleep(15);
                 }
             }
