@@ -1,4 +1,4 @@
-package com.mobileeffort.filescounter.counterlogic;
+package filescounter.counterlogic;
 
 
 import java.io.BufferedReader;
